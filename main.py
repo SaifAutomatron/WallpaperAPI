@@ -1,3 +1,6 @@
+import os
+
+import uvicorn
 from fastapi import FastAPI, Request, Depends, Query
 from sqlalchemy.orm import Session
 from starlette.staticfiles import StaticFiles
@@ -48,3 +51,13 @@ async def home(
         "size": size,
         "total_pages": (total_count + size - 1) // size
     })
+
+
+if __name__ == "__main__":
+    print("Strating webserver..")
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 8080)),
+        proxy_headers=True
+    )

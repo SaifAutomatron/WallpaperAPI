@@ -21,32 +21,23 @@
                     <li class="nav-item"><a class="nav-link" href="/Wallpapers/upload">Add Wallpaper</a></li>
                 </ul>
             </div>
-            <div class="collapse navbar-collapse" id="navbarNav2">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filter by Category
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="/Wallpapers/category/Nature">Nature</a></li>
-                        <li><a class="dropdown-item" href="/Wallpapers/category/Cities">Cities</a></li>
-                        <li><a class="dropdown-item" href="/Wallpapers/category/Abstract">Abstract</a></li>
-                        <li><a class="dropdown-item" href="/Wallpapers/category/Animals">Animals</a></li>
-                        <li><a class="dropdown-item" href="/Wallpapers/category/Technology">Technology</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#">TBD</a></li>
-            </ul>
-        </div>
         </div>
     </nav>
     <main class="page projects-page">
         <section class="portfolio-block projects-cards">
             <div class="container">
-                <div class="heading">
-                    <h2>Browse Wallpapers</h2>
-                </div>
-                <div class="row">
+           <form action="/" method="get" class="mb-sm-5">
+               <h5>Categories</h5>
+            <select class="form-control mb-3" name="category" onchange="this.form.submit()">
+                <option value="" {% if request.query_params['category']|default('') == '' %}selected{% endif %}>All Categories</option>
+                <option value="Nature" {% if request.query_params['category'] == 'Nature' %}selected{% endif %}>Nature</option>
+                <option value="Cities" {% if request.query_params['category'] == 'Cities' %}selected{% endif %}>Cities</option>
+                <option value="Abstract" {% if request.query_params['category'] == 'Abstract' %}selected{% endif %}>Abstract</option>
+                <option value="Animals" {% if request.query_params['category'] == 'Animals' %}selected{% endif %}>Animals</option>
+                <option value="Technology" {% if request.query_params['category'] == 'Technology' %}selected{% endif %}>Technology</option>
+            </select>
+            </form>
+            <div class="row">
                {% for wallpaper in wallpapers %}
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card border-0 h-100">
