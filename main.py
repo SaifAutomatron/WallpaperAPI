@@ -3,6 +3,7 @@ import os
 import uvicorn
 from fastapi import FastAPI, Request, Depends, Query
 from sqlalchemy.orm import Session
+from starlette.middleware.cors import CORSMiddleware
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
@@ -29,13 +30,22 @@ def get_db():
         db.close()
 
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 @app.get("/")
 async def home(
-    request: Request,
-    db: Session = Depends(get_db),
-    category: str = Query(None, description="Filter wallpapers by category, leave this empty for all wallpapers"),
-    page: int = Query(1, ge=1, description="Page number starting from 1"),
-    size: int = Query(10, ge=1, description="Number of items per page")
+        request: Request,
+        db: Session = Depends(get_db),
+        category: str = Query(None, description="Filter wallpapers by category, leave this empty for all wallpapers"),
+        page: int = Query(1, ge=1, description="Page number starting from 1"),
+        size: int = Query(10, ge=1, description="Number of items per page")
 ):
     query = db.query(models.Wallpapers)
     if category and category.strip():
@@ -53,11 +63,3 @@ async def home(
     })
 
 
-if __name__ == "__main__":
-    print("Strating webserver..")
-    uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=int(os.environ.get("PORT", 8080)),
-        proxy_headers=True
-    )

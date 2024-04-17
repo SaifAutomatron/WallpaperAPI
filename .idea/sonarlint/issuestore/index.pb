@@ -39,8 +39,13 @@ J
 static/assets/js/upload.js,4/0/405ce09f98148d64225c35b0689117fc5b42e9cb
 =
 static/images,9/5/95537ef78a39d4dd3aabd291989df4556bf5a20f
-:
-
-Dockerfile,6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4
 @
 requirements.txt,1/9/19359a61ae2446b51b549167b014da2fcf265768
+A
+.elasticbeanstalk,7/b/7b295bc128771b84724118df5afc4c49000a3d92
+L
+.elasticbeanstalk/config.yml,8/b/8b2942d96ac7340d161e27b51e58adf960d5d86f
+O
+.ebextensions/01_fastapi.config,b/f/bf3f77c6d83a200613fc60c9540d74ed233a5aba
+8
+Procfile,b/c/bc3c68e880d1a01632bce79f69dd1387c7ba9c54
