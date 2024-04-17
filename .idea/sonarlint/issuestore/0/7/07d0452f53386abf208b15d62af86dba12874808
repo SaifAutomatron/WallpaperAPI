@@ -1,0 +1,14 @@
+
+zpython:S1192a"VDefine a constant instead of duplicating this literal "Authorization Failed!" 3 times.(í«ˆûÿÿÿÿÿ8æ°ˆÖë1
+Špython:S5886H"kReturn a value of type "str" instead of "NoneType" or update function "upload_image_and_get_url" type hint.(½©¨÷8æ°ˆÖë1
+Npython:S1481E"*Remove the unused local variable "result".(¨Š¶ñüÿÿÿÿ8æ°ˆÖë1
+Xpython:S5727G"4Remove this identity check; it will always be False.(¸õÁÿÿÿÿÿ8æ°ˆÖë1
+ipython:S3457P"EAdd replacement fields or use a normal string instead of an f-string.(¶şøµøÿÿÿÿ8ùå•Öë1
+Spython:S5727`"4Remove this identity check; it will always be False.(±ƒ²8ç°ˆÖë1
+python:S117"`Rename this local variable "Wallpapers_data" to match the regular expression ^[_a-z][a-z0-9_]*$.(™Á±Ş8ç°ˆÖë1
+}python:S117†"YRename this parameter "Wallpapers_id" to match the regular expression ^[_a-z][a-z0-9_]*$.(”™ÿŞüÿÿÿÿ8ç°ˆÖë1
+|python:S1542†"WRename function "delete_Wallpapers" to match the regular expression ^[a-z_][a-z0-9_]*$.(”™ÿŞüÿÿÿÿ8ç°ˆÖë1
+python:S117"`Rename this local variable "Wallpapers_data" to match the regular expression ^[_a-z][a-z0-9_]*$.(ù†…Ë8ç°ˆÖë1
+xpython:S117š"YRename this parameter "Wallpapers_id" to match the regular expression ^[_a-z][a-z0-9_]*$.(åÍŞÊ8ç°ˆÖë1
+}python:S117š"^Rename this parameter "Wallpapers_request" to match the regular expression ^[_a-z][a-z0-9_]*$.(åÍŞÊ8ç°ˆÖë1
+wpython:S1542š"WRename function "update_Wallpapers" to match the regular expression ^[a-z_][a-z0-9_]*$.(åÍŞÊ8ç°ˆÖë1

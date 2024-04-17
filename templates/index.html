@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html data-bs-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Wallpapers</title>
+    <meta content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap">
+    <link rel="stylesheet" href="../static/assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="../static/assets/css/pikaday.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top portfolio-navbar gradient navbar-dark">
+        <div class="container"><a class="navbar-brand logo" href="#">Wallpapers</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/Wallpapers/upload">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Wallpapers/upload">Add Wallpaper</a></li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav2">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Filter by Category
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/Wallpapers/category/Nature">Nature</a></li>
+                        <li><a class="dropdown-item" href="/Wallpapers/category/Cities">Cities</a></li>
+                        <li><a class="dropdown-item" href="/Wallpapers/category/Abstract">Abstract</a></li>
+                        <li><a class="dropdown-item" href="/Wallpapers/category/Animals">Animals</a></li>
+                        <li><a class="dropdown-item" href="/Wallpapers/category/Technology">Technology</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#">TBD</a></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <main class="page projects-page">
+        <section class="portfolio-block projects-cards">
+            <div class="container">
+                <div class="heading">
+                    <h2>Browse Wallpapers</h2>
+                </div>
+                <div class="row">
+               {% for wallpaper in wallpapers %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card border-0 h-100">
+                        <a href="#">
+                            <div class="card-img-top img-fluid img-container">
+                                <img src="{{ wallpaper.url }}" alt="Card Image" class="scale-on-hover">
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <h6><a href="#">{{ wallpaper.title }}</a></h6>
+                            <p class="text-muted card-text">{{ wallpaper.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="pagination justify-content-center">
+                {% if page > 1 %}
+                <a href="?category={{ request.query_params['category']|default('') }}&page=1&size={{ size }}" class="btn btn-primary">First</a>
+                <a href="?category={{ request.query_params['category']|default('') }}&page={{ page - 1 }}&size={{ size }}" class="btn btn-primary">Previous</a>
+                {% endif %}
+
+                <span class="current-page">Page {{ page }} of {{ total_pages }}</span>
+
+                {% if page < total_pages %}
+                <a href="?category={{ request.query_params['category']|default('') }}&page={{ page + 1 }}&size={{ size }}" class="btn btn-primary">Next</a>
+                <a href="?category={{ request.query_params['category']|default('') }}&page={{ total_pages }}&size={{ size }}" class="btn btn-primary">Last</a>
+                {% endif %}
+                 </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer py-3 border-top">
+        <div class="container my-4">
+            <div class="links"><a href="#">About me</a><a href="#">Contact me</a></div>
+            <div class="social-icons"><a class="me-3" href="#"><i class="icon ion-social-facebook"></i></a><a class="me-3" href="#"><i class="icon ion-social-instagram-outline"></i></a><a class="me-3" href="#"><i class="icon ion-social-twitter"></i></a></div>
+        </div>
+    </footer>
+    <script src="../static/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/assets/js/pikaday.min.js"></script>
+    <script src="../static/assets/js/theme.js"></script>
+</body>
+
+</html>
