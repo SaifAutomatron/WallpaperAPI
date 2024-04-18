@@ -17,7 +17,7 @@
         <div class="container"><a class="navbar-brand logo" href="#">Wallpapers</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/Wallpapers/upload">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Wallpapers/upload">Add Wallpaper</a></li>
                 </ul>
             </div>
@@ -49,24 +49,24 @@
                         <div class="card-body">
                             <h6><a href="#">{{ wallpaper.title }}</a></h6>
                             <p class="text-muted card-text">{{ wallpaper.description }}</p>
+                             <a href="{{ wallpaper.url }}"><b>Download</b></a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
                 <div class="pagination justify-content-center">
                 {% if page > 1 %}
-                <a href="?category={{ request.query_params['category']|default('') }}&page=1&size={{ size }}" class="btn btn-primary">First</a>
+                <a href="?category={{ request.query_params['category']|default('') }}&page=1&size={{ size }}" class="btn btn-primary" style="margin-right: 20px;">First</a>
                 <a href="?category={{ request.query_params['category']|default('') }}&page={{ page - 1 }}&size={{ size }}" class="btn btn-primary">Previous</a>
                 {% endif %}
 
-                <span class="current-page">Page {{ page }} of {{ total_pages }}</span>
-
                 {% if page < total_pages %}
-                <a href="?category={{ request.query_params['category']|default('') }}&page={{ page + 1 }}&size={{ size }}" class="btn btn-primary">Next</a>
+                <a href="?category={{ request.query_params['category']|default('') }}&page={{ page + 1 }}&size={{ size }}" class="btn btn-primary" style="margin-right: 20px;">Next</a>
                 <a href="?category={{ request.query_params['category']|default('') }}&page={{ total_pages }}&size={{ size }}" class="btn btn-primary">Last</a>
                 {% endif %}
-                 </div>
-            </div>
+               </div>
+                <div><p></p></div>
+               <div class="pagination justify-content-center">Page {{ page }} of {{ total_pages }}</span></div>
         </section>
     </main>
     <footer class="page-footer py-3 border-top">

@@ -14,10 +14,10 @@ from database import engine, SessionLocal
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 
-app.include_router(auth.router)
+#app.include_router(auth.router)
 app.include_router(wallpapers.router)
-app.include_router(admin.router)
-app.include_router(users.router)
+#app.include_router(admin.router)
+#app.include_router(users.router)
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -45,7 +45,7 @@ async def home(
         db: Session = Depends(get_db),
         category: str = Query(None, description="Filter wallpapers by category, leave this empty for all wallpapers"),
         page: int = Query(1, ge=1, description="Page number starting from 1"),
-        size: int = Query(10, ge=1, description="Number of items per page")
+        size: int = Query(12, ge=1, description="Number of items per page")
 ):
     query = db.query(models.Wallpapers)
     if category and category.strip():

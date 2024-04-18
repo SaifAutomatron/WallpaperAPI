@@ -67,7 +67,7 @@ async def upload_image_and_get_url(image: UploadFile) -> str:
             response = await client.post(api_url, files=files)
             response.raise_for_status()
             result = response.json()
-            url = None# result['image_url']
+            url = result['image_url']
             if url is not None:
                 return url
             else:
@@ -81,7 +81,7 @@ async def upload_image_and_get_url(image: UploadFile) -> str:
     finally:
         await image.close()
 
-    return "Upload failed or no URL returned"
+    return {"error_message":"Upload failed or no URL returned"}
 
 
 @router.get("/upload")
@@ -98,9 +98,8 @@ async def upload_wallpapers(db: db_dependency, title: str = Form(...), descripti
 
     # Calling Salmaan's API
     image_url = await upload_image_and_get_url(image)
-    print(image_url)
     # Calling Siranjeevi's API
-    image_url = await shorten_url(image_url)
+    #image_url = await shorten_url(image_url)
     wallpaper_data = {
         "title": title,
         "description": description,
@@ -115,8 +114,8 @@ async def upload_wallpapers(db: db_dependency, title: str = Form(...), descripti
     return {"message": "Wallpaper uploaded successfully", "image_url": image_url}
 
 
-@router.get("/category/{category}", status_code=status.HTTP_200_OK)
-async def get_wallpapers_by_category(category: str, db: Session = Depends(db_dependency), page: int = Query(1, ge=1, description="Page number starting from 1"),size: int = Query(10, ge=1, description="Number of items per page")):
+@router.get("/api/category/{category}", status_code=status.HTTP_200_OK)
+async def get_wallpapers_by_category(category: str, db:db_dependency, page: int = Query(1, ge=1, description="Page number starting from 1"),size: int = Query(12, ge=1, description="Number of items per page")):
     offset = (page - 1) * size
     wallpapers_data = db.query(Wallpapers).filter(Wallpapers.category == category).offset(offset).limit(size).all()
 
@@ -125,38 +124,31 @@ async def get_wallpapers_by_category(category: str, db: Session = Depends(db_dep
     raise HTTPException(status_code=404, detail="No Wallpapers found for this category!")
 
 
-@router.get("/delete")
+# @router.get("/delete")
 async def get_upload_page(request: Request):
     return templates.TemplateResponse("update.html", {"request": request})
 
 
-@router.delete("/api/delete/{Wallpapers_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_Wallpapers(Wallpapers_id: int, user: user_dependency, db: db_dependency, name: str = None):
-    if user is None:
-        raise HTTPException(status_code=401, detail="Authorization Failed!")
-
-    query = db.query(Wallpapers).filter(Wallpapers.id == Wallpapers_id, Wallpapers.owner_id == user.get("id"))
-    if name:
-        query = query.filter(Wallpapers.name == name)
-    Wallpapers_data = query.first()
+@router.delete("/api/delete/{Wallpaper_name}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_Wallpapers(Wallpaper_name: str, db: db_dependency):
+    query = db.query(Wallpapers).filter(Wallpapers.title == Wallpaper_name)
+    Wallpapers_data = query.all()
     if Wallpapers_data is None:
         raise HTTPException(status_code=404, detail="Wallpapers not found!")
     query.delete()
     db.commit()
+    return {"message": "Wallpapers deleted successfully"}
 
 
-@router.get("/update")
+#@router.get("/update")
 async def get_upload_page(request: Request):
     return templates.TemplateResponse("update.html", {"request": request})
 
 
-@router.put("/api/update/{Wallpapers_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def update_Wallpapers(Wallpapers_id: int, Wallpapers_request: WallpaperRequest, user: user_dependency,
+@router.put("/api/update/{Wallpaper_name}", status_code=status.HTTP_204_NO_CONTENT)
+async def update_Wallpapers(Wallpaper_name: str, Wallpapers_request: WallpaperRequest,
                             db: db_dependency):
-    if user is None:
-        raise HTTPException(status_code=401, detail="Authorization Failed!")
-    Wallpapers_data = db.query(Wallpapers).filter(Wallpapers.id == Wallpapers_id,
-                                                  Wallpapers.owner_id == user.get("id")).first()
+    Wallpapers_data = db.query(Wallpapers).filter(Wallpapers.title == Wallpaper_name).first()
     if not Wallpapers_data:
         raise HTTPException(status_code=404, detail="Wallpapers not found!")
 
@@ -164,3 +156,4 @@ async def update_Wallpapers(Wallpapers_id: int, Wallpapers_request: WallpaperReq
         setattr(Wallpapers, var, value) if value is not None else None
 
     db.commit()
+    return {"message": "Wallpapers updated successfully"}
