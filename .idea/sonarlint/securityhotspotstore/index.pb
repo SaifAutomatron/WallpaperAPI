@@ -41,10 +41,6 @@ J
 static/images,9/5/95537ef78a39d4dd3aabd291989df4556bf5a20f
 @
 requirements.txt,1/9/19359a61ae2446b51b549167b014da2fcf265768
-A
-.elasticbeanstalk,7/b/7b295bc128771b84724118df5afc4c49000a3d92
-L
-.elasticbeanstalk/config.yml,8/b/8b2942d96ac7340d161e27b51e58adf960d5d86f
 O
 .ebextensions/01_fastapi.config,b/f/bf3f77c6d83a200613fc60c9540d74ed233a5aba
 8
