@@ -7,17 +7,15 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
-from routers import auth, wallpapers, admin, users
+from routers import auth, wallpapers
 import models
 from database import engine, SessionLocal
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 
-#app.include_router(auth.router)
+# Registering wallpaper router
 app.include_router(wallpapers.router)
-#app.include_router(admin.router)
-#app.include_router(users.router)
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 

@@ -13,10 +13,6 @@
 database.py,1/2/12d0bfc8adac6eee15262b728a538821e35c98c9
 E
 routers/wallpapers.py,0/7/07d0452f53386abf208b15d62af86dba12874808
-@
-routers/admin.py,1/a/1a010e2d217ab218614dc2d3a3e5c7318ae61f85
-@
-routers/users.py,b/8/b807c9b325433959aa8f215a4e99fe00eb0873b5
 ?
 routers/auth.py,8/5/85f203a072ecaeff13fda28035aae708563828ea
 9
@@ -45,3 +41,14 @@ O
 .ebextensions/01_fastapi.config,b/f/bf3f77c6d83a200613fc60c9540d74ed233a5aba
 8
 Procfile,b/c/bc3c68e880d1a01632bce79f69dd1387c7ba9c54
+:
+
+readme.txt,4/5/451685e9efac4a6dc1fee73ec53ffb6b2c4c38b5
+w
+G.idea/sonarlint/issuestore/1/a/1a010e2d217ab218614dc2d3a3e5c7318ae61f85,c/1/c1fd9f2ce97a64af9057579c816e9fb29194d9b9
+w
+G.idea/sonarlint/issuestore/b/8/b807c9b325433959aa8f215a4e99fe00eb0873b5,c/6/c616ad0dda9d85a4fb77301351c94c72a36595a7
+Å
+Q.idea/sonarlint/securityhotspotstore/1/a/1a010e2d217ab218614dc2d3a3e5c7318ae61f85,0/b/0b3b523b4d486b3397730bc8143b50df14823951
+Å
+Q.idea/sonarlint/securityhotspotstore/b/8/b807c9b325433959aa8f215a4e99fe00eb0873b5,0/4/0494e0c11384af1b71ec0797ab3e627bad1da422
